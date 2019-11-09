@@ -1,1 +1,38 @@
 <!DOCTYPE HTML>
+<html>
+
+	<head>
+		<!--<script src="./assets/js/jquery-3.4.1.min.js"></script>-->
+		<link href="./assets/js/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div id="container" style="width: 25px; margin:15px;">
+			<input id="val" style="width: 25px"></input>
+			<div id="master" style="height:300px; margin: auto"></div>
+		</div>
+		<script src="./assets/js/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+		<script src="./assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+		<script>
+			$(function() {
+				// setup master volume
+				$("#master").slider({
+					value: 0,
+					min: -1,
+					max: 1,
+					step: 0.1,
+					orientation: "vertical",
+					animate: true,
+					slide: function(event, ui) {
+						$("#val").val((ui.value).toFixed(1));
+					}
+				});
+				$("#val").val(($("#master").slider("value")).toFixed(1));
+				$("#val").change(() => {
+					$("#master").slider("option", "value", $("#val").val());
+				})
+			});
+		</script>
+	</body>
+
+</html>
